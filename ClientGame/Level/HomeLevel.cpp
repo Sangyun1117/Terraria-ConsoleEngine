@@ -1,4 +1,4 @@
-﻿#include "HomeLevel.h"
+#include "HomeLevel.h"
 #include "Utils/Utils.h"
 #include "Game/Game.h"
 #include "Core/ImageManager.h"

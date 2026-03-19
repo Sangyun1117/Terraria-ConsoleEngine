@@ -1,12 +1,12 @@
 #include "Input.h"
 #include <Windows.h>
 
-// static º¯¼ö Á¤ÀÇ.
+// static ë³€ìˆ˜ ì •ì˜.
 Input* Input::instance = nullptr;
 
 Input::Input()
 {
-	// ½Ì±ÛÅæ ½ÇÇàÀ» À§ÇØ instance º¯¼ö ¼³Á¤.
+	// ì‹±ê¸€í†¤ ì‹¤í–‰ì„ ìœ„í•´ instance ë³€ìˆ˜ ì„¤ì •.
 	instance = this;
 }
 
@@ -19,14 +19,14 @@ bool Input::IsMouseOver(const Vector2& topLeft, const Vector2& bottomRight) cons
 
 void Input::ProcessInput()
 {
-	// Å°º¸µå ÀÔ·Â Ã³¸®
+	// í‚¤ë³´ë“œ ì…ë ¥ ì²˜ë¦¬
 	for (int ix = 0; ix < 255; ++ix)
 	{
 		keyStates[ix].isKeyDown
 			= GetAsyncKeyState(ix) & 0x8000;
 	}
 
-	// ¸¶¿ì½º ÀÔ·Â Ã³¸®
+	// ë§ˆìš°ìŠ¤ ì…ë ¥ ì²˜ë¦¬
 	POINT p;
 	GetCursorPos(&p);
 	HWND hwnd = GetConsoleWindow();
@@ -37,8 +37,8 @@ void Input::ProcessInput()
 	GetCurrentConsoleFont(hOut, FALSE, &fontInfo);
 	COORD fontSize = GetConsoleFontSize(hOut, fontInfo.nFont);
 
-	if (fontSize.X == 0) fontSize.X = 8; // ±âº» ±ÛÀÚ Æø(px)
-	if (fontSize.Y == 0) fontSize.Y = 12; // ±âº» ±ÛÀÚ ³ôÀÌ(px)
+	if (fontSize.X == 0) fontSize.X = 8; // ê¸°ë³¸ ê¸€ì í­(px)
+	if (fontSize.Y == 0) fontSize.Y = 12; // ê¸°ë³¸ ê¸€ì ë†’ì´(px)
 	mouseState.position.x = p.x / fontSize.X;
 	mouseState.position.y = p.y / fontSize.Y;
 

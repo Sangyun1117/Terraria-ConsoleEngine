@@ -1,6 +1,6 @@
 #pragma once
 
-// »ö»ó.
+// ìƒ‰ìƒ.
 enum class Color : int
 {
     Black = 0,
@@ -21,8 +21,8 @@ enum class Color : int
     White = 15,
     Transparent = -1
 };
-//16Áø¼ö¸¦ ÄÃ·¯·Î ¸ÅÇÎ
-inline Color ConvertHexCharToColor(char c) //ÇÔ¼ö Áßº¹À» ÇÇÇÏ±â À§ÇØ inline ¼±¾ğ
+//16ì§„ìˆ˜ë¥¼ ì»¬ëŸ¬ë¡œ ë§¤í•‘
+inline Color ConvertHexCharToColor(char c) //í•¨ìˆ˜ ì¤‘ë³µì„ í”¼í•˜ê¸° ìœ„í•´ inline ì„ ì–¸
 {
     switch (toupper(c))
     {
@@ -42,6 +42,6 @@ inline Color ConvertHexCharToColor(char c) //ÇÔ¼ö Áßº¹À» ÇÇÇÏ±â À§ÇØ inline ¼±¾ğ
     case 'D': return Color::BrightMagenta;
     case 'E': return Color::BrightYellow;
     case 'F': return Color::White;
-    default:  return Color::Transparent; // »ç¿ëÀÚ Á¤ÀÇ ¶Ç´Â ¹«½Ã
+    default:  return Color::Transparent; // ì‚¬ìš©ì ì •ì˜ ë˜ëŠ” ë¬´ì‹œ
     }
 }

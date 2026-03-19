@@ -1,4 +1,4 @@
-﻿#include "InventoryUI.h"
+#include "InventoryUI.h"
 #include "UI/UIElement.h"
 #include "Core/ImageManager.h"
 #include "Level/GameLevel.h"
