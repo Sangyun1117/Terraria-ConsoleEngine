@@ -1,4 +1,4 @@
-// 프로젝트에서 다양하게 사용할 유틸리티 함수 모음.
+﻿// 프로젝트에서 다양하게 사용할 유틸리티 함수 모음.
 #pragma once
 #include <Windows.h>
 #include "Math/Vector2.h"

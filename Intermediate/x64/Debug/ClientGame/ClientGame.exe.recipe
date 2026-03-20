@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Workspace\CppBasic\MyConsoleProject\Bin\x64\Debug\ClientGame\ClientGame.exe</FullPath>
+      <FullPath>C:\Workspace\Cpp\Terraria-ConsoleEngine\Bin\x64\Debug\ClientGame\ClientGame.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
