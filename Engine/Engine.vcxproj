@@ -149,9 +149,8 @@ xcopy $(OutDir)\Engine.dll ..\Lib\Engine\ /y</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy *.h ..\Includes /y /e 
-
-xcopy ..\Settings $(OutDir)..\Settings\ /y /e</Command>
+      <Command>xcopy *.h ..\Includes /y /e /I
+xcopy ..\Settings $(OutDir)..\Settings\ /y </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>xcopy $(OutDir)\Engine.lib ..\Lib\Engine\ /y
