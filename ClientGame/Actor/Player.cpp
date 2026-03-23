@@ -266,39 +266,47 @@ void Player::Render()
 	Vector2 actorPos = { position.x - Engine::Get().cameraPos.x, position.y - Engine::Get().cameraPos.y };
 
 	if (asciiImages.empty() || asciiImages[0].empty())
+	{
 		return;
+	}
 
 	//애니메이션 프레임 계산
 	int direction = isRight ? 0 : 50;
 	int animationLevel = 0;
-	if (isRunning) {
+	if (isRunning)
+	{
 		animationLevel = (runFrame + 1) * 10;
 	}
 
 	int startRow = direction + animationLevel;
 
-	// 이미지와 색상에서 필요한 부분만 자름
+	// 이미지와 색상에서 필요한 부분만 자른 후 캐릭터 렌더링
 	auto sliceImage = Utils::Slice2DVector(asciiImages, startRow, 0, PLAYER_HEIGHT, (int)asciiImages[0].size());
 	auto sliceFg = Utils::Slice2DVector(fgs, startRow, 0, PLAYER_HEIGHT, (int)fgs[0].size());
 	auto sliceBg = Utils::Slice2DVector(bgs, startRow, 0, PLAYER_HEIGHT, (int)bgs[0].size());
 	Engine::Get().WriteToBuffer(actorPos, sliceImage, sliceFg, sliceBg);
 
-	//아이템 렌더
+
+	if (inventory[itemLevel].itemName == ITEM_HAND)
+	{
+		return;
+	}
+
+	//아이템 위치 계산
 	int itemDirection = isRight ? 0 : 5;
 	int itemPosX = isRight ? 3 : -3;
 	int itemPosY = isItemAction ? 6 : 3;
 	int itemActionPoint = isItemAction ? 10 : 0;
-	if (inventory[itemLevel].itemName != ITEM_HAND) {
-		startRow = itemDirection + (inventory[itemLevel].itemName - 1) * 20 + itemActionPoint;
-		int drawHeight = 5; //아이템 높이
+	Vector2 itemDrawPos = { actorPos.x + itemPosX, actorPos.y + itemPosY };
 
-		auto sliceImage = Utils::Slice2DVector(itemsImage, startRow, 0, drawHeight, (int)itemsImage[0].size());
-		auto sliceFg = Utils::Slice2DVector(itemsFgColors, startRow, 0, drawHeight, (int)itemsFgColors[0].size());
-		auto sliceBg = Utils::Slice2DVector(itemsBgColors, startRow, 0, drawHeight, (int)itemsBgColors[0].size());
+	int itemStartRow = itemDirection + (inventory[itemLevel].itemName - 1) * 20 + itemActionPoint;
+	int itemHeight = 5; //아이템 높이
 
-		Vector2 itemDrawPos = { actorPos.x + itemPosX, actorPos.y + itemPosY };
-		Engine::Get().WriteToBuffer(itemDrawPos, sliceImage, sliceFg, sliceBg);
-	}
+	// 이미지와 색상에서 필요한 부분만 자른 후 아이템 렌더링
+	auto itemSliceImage = Utils::Slice2DVector(itemsImage, itemStartRow, 0, itemHeight, (int)itemsImage[0].size());
+	auto itemSliceFg = Utils::Slice2DVector(itemsFgColors, itemStartRow, 0, itemHeight, (int)itemsFgColors[0].size());
+	auto itemSliceBg = Utils::Slice2DVector(itemsBgColors, itemStartRow, 0, itemHeight, (int)itemsBgColors[0].size());
+	Engine::Get().WriteToBuffer(itemDrawPos, itemSliceImage, itemSliceFg, itemSliceBg);
 }
 
 void Player::Move(Vector2 delta)
